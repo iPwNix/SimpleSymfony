@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+
+        .new-button {
+            margin-bottom: 25px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>{{ greeting }} Articles</h1>
+        <a href="/articles/new" class="btn btn-success new-button">New Article</a>
+
+        <form action="POST">
+            <label for="ajaxtest">Ajax Test</label>
+            <input type="text" name="ajaxtest" id="ajax-test">
+        </form>
+        <button id="ajaxTest">Send Ajax</button>
+
+        <div id="ajax-result"></div>
+        {% if articles %}
+            <table id="articles" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.category.category }}</td>
+                        <td>
+                            <a href="/articles/{{ article.id }}" class="btn btn-info">Show</a>
+                            <a href="/articles/edit/{{ article.id }}" class="btn btn-warning">Edit</a>
+                            <a href="/articles/delete/{{ article.id }}" class="btn btn-danger delete-article"
+                               data-id="{{ article.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No articles found</p>
+        {% endif %}
+    </div>
+{% endblock %}

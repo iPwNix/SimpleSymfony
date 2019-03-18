@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>New Article</h1>
+
+
+        {{ form_start(article_form, {'attr': {'class': 'form-horizontal style-form'}}) }}
+        <div class="form-group">
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(article_form) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(article_form.title) }}
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ form_row(article_form.body) }}
+                </div>
+            </div>
+        </div>
+        {{ form_end(article_form) }}
+
+    </div>
+{% endblock %}
